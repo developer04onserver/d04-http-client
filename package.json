@@ -1,0 +1,13 @@
+{
+  "name": "d04-http-client",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A small fetch wrapper with timeouts, retries, JSON parsing, and typed HTTP errors.",
+  "exports": "./src/index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
