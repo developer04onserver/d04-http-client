@@ -1,0 +1,3 @@
+import test from "node:test"; import assert from "node:assert/strict"; import { createHttpClient, HttpError } from "../src/index.js";
+test("parses JSON and merges headers",async()=>{const client=createHttpClient({baseUrl:"https://example.test",headers:{x:"1"},fetchImpl:async(url,opts)=>({ok:true,status:200,headers:new Headers(),text:async()=>'{"ok":true}'})});const r=await client.get("/health");assert.equal(r.data.ok,true);});
+test("throws structured HTTP errors",async()=>{const client=createHttpClient({fetchImpl:async()=>({ok:false,status:404,headers:new Headers(),text:async()=>'missing'})});await assert.rejects(()=>client.get("https://example.test/x"),e=>e instanceof HttpError&&e.status===404);});
